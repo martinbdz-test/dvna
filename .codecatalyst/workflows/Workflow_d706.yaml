@@ -29,10 +29,12 @@ Actions:
       # Required - Steps are sequential instructions that run shell commands
       Steps:
         - Run: printenv
-        #- Run: export SONAR_SCANNER_VERSION=4.7.0.2747
-        #- Run: export SONAR_SCANNER_HOME=$HOME/.sonar/sonar-scanner-$SONAR_SCANNER_VERSION-linux
-        #- Run: curl --create-dirs -sSLo $HOME/.sonar/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONAR_SCANNER_VERSION-linux.zip
-        #- Run: unzip -o $HOME/.sonar/sonar-scanner.zip -d $HOME/.sonar/
-        #- Run: export PATH=$SONAR_SCANNER_HOME/bin:$PATH
-        #- Run: export SONAR_SCANNER_OPTS="-server"
-        #- Run: sonar-scanner -Dsonar.organization=martinbdz-test-1 -Dsonar.projectKey=martinbdz-test_dvna2 -Dsonar.sources=. -Dsonar.host.url=https://sonarcloud.io
+        - Run: echo ${WorkflowSource.BranchName}
+        - Run: echo ${WorkflowSource.CommitId}
+        - Run: export SONAR_SCANNER_VERSION=4.7.0.2747
+        - Run: export SONAR_SCANNER_HOME=$HOME/.sonar/sonar-scanner-$SONAR_SCANNER_VERSION-linux
+        - Run: curl --create-dirs -sSLo $HOME/.sonar/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONAR_SCANNER_VERSION-linux.zip
+        - Run: unzip -o $HOME/.sonar/sonar-scanner.zip -d $HOME/.sonar/
+        - Run: export PATH=$SONAR_SCANNER_HOME/bin:$PATH
+        - Run: export SONAR_SCANNER_OPTS="-server"
+        - Run: sonar-scanner -Dsonar.organization=martinbdz-test-1 -Dsonar.projectKey=martinbdz-test_dvna2 -Dsonar.sources=. -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${Secrets.SONAR_TOKEN}
