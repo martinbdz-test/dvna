@@ -4,8 +4,6 @@ SchemaVersion: "1.0"
 # Optional - Set automatic triggers.
 Triggers:
   - Type: PUSH
-    Branches:
-      - master
   - Type: PULLREQUEST
     Events: 
       - OPEN
@@ -41,4 +39,4 @@ Actions:
         - Run: unzip -o $HOME/.sonar/sonar-scanner.zip -d $HOME/.sonar/
         - Run: export PATH=$SONAR_SCANNER_HOME/bin:$PATH
         - Run: export SONAR_SCANNER_OPTS="-server"
-        - Run: sonar-scanner -Dsonar.organization=martinbdz-test-1 -Dsonar.projectKey=martinbdz-test_dvna2 -Dsonar.sources=. -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${Secrets.SONAR_TOKEN}
+        - Run: sonar-scanner -Dsonar.organization=martinbdz-test-1 -Dsonar.projectKey=martinbdz-test_dvna2 -Dsonar.sources=. -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${Secrets.SONAR_TOKEN} -Dsonar.pullrequest.base=master -Dsonar.pullrequest.branch=${WorkflowSource.BranchName} -Dsonar.pullrequest.key=1

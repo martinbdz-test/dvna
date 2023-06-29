@@ -18,6 +18,7 @@ module.exports.isNotAuthenticated = function (req, res, next) {
 
 module.exports.forgotPw = function (req, res) {
 	if (req.body.login) {
+		console.log("Something")
 		db.User.find({
 			where: {
 				'login': req.body.login
